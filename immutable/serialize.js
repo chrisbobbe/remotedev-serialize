@@ -16,6 +16,15 @@ module.exports = function serialize(Immutable, refs, customReplacer, customReviv
     if (Immutable.Set.isSet(value)) return mark(value, 'ImmutableSet', 'toArray');
     if (Immutable.Seq.isSeq(value)) return mark(value, 'ImmutableSeq', 'toArray');
     if (Immutable.Stack.isStack(value)) return mark(value, 'ImmutableStack', 'toArray');
+    if (typeof value === 'object' && value !== null && '__serializedType__' in value) {
+      var copy = Object.assign({}, value);
+      delete copy.__serializedType__;
+      return {
+        __serializedType__: 'Object',
+        data: copy,
+        __serializedType__value: value.__serializedType__,
+      }
+    }
     return value;
   }
 
@@ -36,6 +45,10 @@ module.exports = function serialize(Immutable, refs, customReplacer, customReviv
           return refs && refs[value.__serializedRef__]
             ? new refs[value.__serializedRef__](data)
             : Immutable.Map(data);
+        case 'Object':
+          return Object.assign({}, data, {
+            __serializedType__: value.__serializedType__value,
+          });
         default: return data;
       }
     }

@@ -19,3 +19,5 @@ exports[`Immutable Stringify seq 1`] = `"{\"data\":[1,2,3,4,5,6,7,8],\"__seriali
 exports[`Immutable Stringify set 1`] = `"{\"data\":[1,2,3,4,5,6,7,8,9,10],\"__serializedType__\":\"ImmutableSet\"}"`;
 
 exports[`Immutable Stringify stack 1`] = `"{\"data\":[\"a\",\"b\",\"c\"],\"__serializedType__\":\"ImmutableStack\"}"`;
+
+exports[`Immutable Stringify withTypeKey 1`] = `"{\"__serializedType__\":\"Object\",\"data\":{\"a\":1},\"__serializedType__value\":{\"__serializedType__\":\"Object\",\"data\":{\"b\":[2]},\"__serializedType__value\":{\"c\":[3]}}}"`;
